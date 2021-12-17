@@ -1,0 +1,170 @@
+//
+// nav
+//
+
+
+.nav {
+	position: relative;
+
+	.nav-link {
+		@include transition;
+
+		&[class*="active"] {
+			color: $black;
+			background: transparent;
+		}
+	}
+}
+
+
+// tabs
+.nav-tabs {
+	.nav-link {
+		margin-left: -$border-width;
+		padding: rem(16) rem(32);
+		border-width: 0 0 $border-width 0;
+		border-radius: 0;
+		font-size: rem(24);
+		color: rgba($black, .25);
+
+		&:hover {
+			color: rgba($black, .5);
+			border-color: transparent;
+		}
+
+		&[class*="active"] {
+			border-color: $black;
+
+			&:hover {
+				color: $black;
+			}
+		}
+	}
+}
+
+
+// pills
+.nav-pills {
+	display: inline-flex;
+	border: $border-width solid $border-color;
+	padding: 0;
+	border-radius: rem(40);
+
+	.nav-link {
+		color: $secondary;
+		border-radius: rem(40);
+
+		&[class*="active"] {
+			background: $border-color;
+		}
+	}
+}
+
+
+.nav-tabs[class*="flex-column"] {
+	border-left: $border-width solid $border-color;
+	border-bottom: 0;
+
+	.nav-link {
+		border-width: 0 0 0 $border-width;
+	}
+
+	@include media-breakpoint-down(md) {
+		flex-direction: row!important;
+		border: 0;
+
+		.nav-link {
+			padding: rem(8) rem(16);
+			font-size: $font-size-lg;
+			border: $border-width solid transparent;
+
+			&.active {
+				border-color: $black;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.nav-link {
+			padding: rem(8) rem(12);
+			font-size: $font-size-base;
+		}
+	}
+}
+
+
+// vertical
+.nav-minimal {
+	display: inline-flex;
+
+	.nav-item {
+		.nav-item .nav-link {
+			padding: rem(4) 0;
+			font-size: $font-size-base;
+			opacity: .5;
+
+			&[class*="active"],
+			&:hover {
+				opacity: 1;
+				color: $primary;
+			}
+		}
+
+		&:last-child {
+			.nav-link {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.nav-link {
+		@include nofocus;
+		margin-right: rem(16);
+		padding: rem(8) 0;
+		color: inherit;
+		font-size: $font-size-lg;
+
+		&:hover {
+			color: $primary;
+		}
+
+		&[aria-expanded] {
+		  position: relative;
+
+			&::after {
+				@include transition;
+				position: absolute;
+				top: 50%;
+				content: "\e92e";
+				margin-top: -.5em;
+				margin-left: rem(8);
+				line-height: 1em;
+				font-family: 'icomoon' !important;
+				font-size: $font-size-lg;
+				color: inherit;
+			}
+		}
+
+		&[aria-expanded="true"] {
+
+			&::after {
+				@include rotate(180deg);
+			}
+		}
+	}
+
+
+	&[class*="nav-minimal-lg"] {
+		.nav-link {
+			font-size: rem(28);
+		}
+	}
+
+	&[class*="nav-minimal-sm"] {
+		.nav-link {
+			font-size: $font-size-base;
+		}
+	}
+
+}

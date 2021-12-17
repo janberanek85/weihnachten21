@@ -1,0 +1,126 @@
+//
+// list groups
+//
+
+.list-group {
+	border-radius: 0;
+
+	.list-group-item {
+		padding: rem(16) 0;
+		background: transparent;
+		border-width: 0 0 $list-group-border-width;
+
+		&:last-child { border-bottom-width: 0; }
+	}
+
+	&[class*="group-sm"] {
+		.list-group-item {
+			padding-top: rem(8);
+			padding-bottom: rem(8);
+		}
+	}
+
+	&[class*="group-lg"] {
+		.list-group-item {
+			padding-top: rem(32);
+			padding-bottom: rem(32);
+		}
+	}
+
+	&[class*="group-xl"] {
+		.list-group-item {
+			padding-top: rem(56);
+			padding-bottom: rem(56);
+		}
+	}
+}
+
+// flush
+.list-group-flush {
+	.list-group-item {
+		padding-right: $card-spacer-x;
+		padding-left: $card-spacer-x;
+  	}
+}
+
+
+// table
+.list-group-table {
+	.list-group-item {
+		display: flex;
+		padding-top: 0;
+		padding-bottom: 0;
+		height: rem(90);
+		align-items: center;
+	}
+}
+
+
+.list-group-bordered {
+	border: $border-width solid $border-color;
+	
+	&[class*="-sm"] {
+		.list-group-item {
+			padding: rem(8);
+		}
+	}
+
+	&[class*="-lg"] {
+		.list-group-item {
+			padding: rem(32);
+		}
+	}
+
+	&[class*="-xl"] {
+		.list-group-item {
+			padding: rem(56);
+		}
+	}
+}
+
+
+// minimal
+.list-group-minimal {
+	.list-group-item {
+		border: 0;
+	}
+}
+
+
+// links with arrow
+.list-group-link {
+	position: relative;
+
+	&::after {
+		@include transition;
+		@include translateY(-50%);
+		position: absolute;
+		top: 50%;
+		right: $grid-gutter-width / 1.5;
+	    content: "\e917";
+	    display: inline-block;
+	    width: 1em;
+	    line-height: 1em;
+	    font-size: rem(22);
+	    font-family: 'icomoon' !important;
+	    color: $border-color;
+	}
+
+	&:hover {
+		color: $primary!important;
+		
+		&::after {
+			right: $grid-gutter-width / 2;
+			color: $primary;
+		}
+	}
+}
+
+
+
+// inverted colors
+.text-white {
+	.list-group-item {
+		border-color: $inverted-border;
+	}
+}

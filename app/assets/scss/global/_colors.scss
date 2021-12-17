@@ -1,0 +1,89 @@
+//
+// colors
+//
+
+
+// background colors
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background: #{$value}!important;
+  }
+}
+
+@each $color, $value in $colors {
+  .bg-hover-#{$color} {
+    &:hover {
+      background: #{$value}!important;
+    }
+  }
+}
+
+@each $color, $value in $socials {
+  .bg-#{$color} {
+    background: #{$value}!important;
+  }
+}
+
+@each $color, $value in $colors {
+  .bg-opaque-#{$color} {
+    background: rgba($value, .1)!important;
+  }
+}
+
+
+// text colors
+@each $color, $value in $colors {
+  .text-#{$color} {
+    color: #{$value}!important;
+  }
+}
+
+@each $color, $value in $socials {
+  .text-#{$color} {
+    color: #{$value}!important;
+  }
+}
+
+.text-inherit {
+  color: inherit!important;
+}
+
+
+// hover color
+@each $color, $value in $colors {
+  .text-hover-#{$color} {
+  	@include transition;
+  	
+    &:hover { 
+    	color: #{$value}!important;
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .text-hover-#{$color} {
+    @include transition;
+    
+    &:hover { 
+      color: #{$value}!important;
+    }
+  }
+}
+
+@each $color, $value in $socials {
+  .text-hover-#{$color} {
+    @include transition;
+    
+    &:hover { 
+      color: #{$value}!important;
+    }
+  }
+}
+
+
+// border color
+@each $color, $value in $colors {
+  .border-#{$color} {
+  	border-color: #{$value}!important;
+  }
+}

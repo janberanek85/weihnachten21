@@ -1,0 +1,328 @@
+//
+// documentation
+//
+
+.documentation {
+	padding: 0;
+  overflow: hidden;
+
+  main {
+    position: relative;
+    padding-top: $section-padding-sm;
+    padding-bottom: $section-padding-sm;
+
+    @include media-breakpoint-up(lg) {
+      padding-left: 5vw;
+      background: $gray-100;
+      border-bottom: $border-width solid $border-color;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: -$border-width;
+        left: 100%;
+        display: block;
+        width: 15vw;
+        background: linear-gradient(to right,  $gray-100 0%, $white 100%);
+        border-bottom: $border-width solid $border-color;
+      }
+    }
+  }
+
+	aside {
+		position: relative;
+    z-index: 4;
+
+    @include media-breakpoint-up(lg) {
+      border-right: $border-width solid $border-color;
+    }
+
+    .sticky {
+      padding-top: $section-padding-sm;
+    }
+	}
+
+}
+
+
+// table of contents on mobile
+@include media-breakpoint-down(md) {
+  .toc {
+    margin-top: $card-spacer-x;
+    border: $border-width solid $border-color;
+
+    .navbar-toggler {
+      @include transition;
+      width: 100%;
+      line-height: rem(56);
+      text-align: center;
+
+      &[aria-expanded="true"],
+      &:active {
+        background: $border-color;
+      }
+
+      + div {
+
+        padding: rem(16);
+      }
+    }
+  }
+}
+
+
+// table of contents horizontal
+.toc-horizontal {
+  padding: rem(16) 0;
+  background: $gray-100;
+}
+
+
+// section ( showcase sections )
+.section {
+  @extend %floating;
+  background: $white;
+  margin: rem(40);
+
+  + .section { margin-top: 0; }
+
+
+  .tab-pane > section,
+  .tab-pane > footer {
+    position: relative;
+    margin: 0 auto;
+    padding: $section-padding 0;
+
+
+    // for small screens
+    @include media-breakpoint-down(md) {
+      padding: $section-padding-md 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding: $section-padding-sm 0;
+    }
+
+    &[class*="-sm"] {
+      padding-top: $section-padding / 1.5;
+      padding-bottom: $section-padding / 1.5;
+
+      // for small screens
+      @include media-breakpoint-down(md) {
+        padding-top: $section-padding-sm;
+        padding-bottom: $section-padding-sm;
+      }
+    }
+
+    &[class*="-hero"] {
+      padding-top: $section-padding * 1.25;
+
+      // for small screens
+      @include media-breakpoint-down(md) {
+        padding-top: $section-padding-sm * 2;
+      }
+    }
+  }
+
+
+  .section-header {
+    padding: rem(24) 0;
+    border-bottom: $border-width solid $gray-100;
+  }
+
+  .section-title {
+    font-size: rem(20);
+    font-weight: $font-weight-bold;
+  }
+
+  .section-code {
+    padding: $card-spacer-x 0;
+  }
+
+  .section-preview {
+    position: relative;
+  }
+}
+
+
+// component ( showcase components )
+.component {
+  padding: $section-padding-sm 0;
+
+  + .component { padding-top: 0; }
+
+  .component-header {
+    margin-bottom: rem(16);
+  }
+
+  .component-body {
+    > div {
+      @include shadow;
+      background: $white;
+      padding: $card-spacer-x;
+
+      &:not(:first-child) {
+        margin-top: rem(8);
+      }
+    }
+  }
+
+  .component-title {
+    font-size: rem(32);
+  }
+}
+
+
+
+////
+/// content
+//
+
+
+
+// file tree
+.file-tree {
+  margin-bottom: 0;
+  padding-left: 20px;
+  list-style: none;
+  overflow: hidden;
+
+  ul {
+    list-style: none;
+    display: none;
+    padding-left: rem(34);
+  }
+  
+  li {
+    position: relative;
+    padding: rem(4) 0;
+    border-radius: $border-radius;
+    cursor: auto;
+    white-space: nowrap;
+    font-size: $font-size-base;
+
+    &::before {
+      content: "\e965";
+      display: inline-block;
+      text-align: center;
+      width: $card-spacer-x;
+      margin-right: rem(4);
+      vertical-align: middle;
+      font-family: 'icomoon' !important;
+      font-size: rem(18);
+      height: rem(32);
+      line-height: rem(26);
+      color: $black;
+    }
+
+    span {
+      color: $gray-600;
+      font-weight: $font-weight-normal;
+      font-size: .75rem;
+    }
+  }
+
+  .file-tree-folder {
+    @include transition;
+    cursor: pointer;
+
+    &::before {
+      content: "\e96c";
+      font-size: 1.25rem;
+    }
+
+    ul {
+    	margin: rem(4) 0;
+    }
+
+    &.open {
+      &::after {
+        @include rotate(180deg);
+      }
+
+      > ul {
+        display: block;
+      }
+    }
+
+    &::after {
+      @include transition;
+      position: absolute;
+      top: rem(8);
+      left: -1em;
+      content: "\e92e";
+      display: block;
+      text-align: center;
+      width: rem(20);
+      line-height: rem(20);
+      font-family: 'icomoon' !important;
+      font-size: rem(16);
+      color: $black;
+    }
+
+    &.open {
+      &::before { content: "\e96c"; }
+    }
+
+    &.empty {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+
+// changelog
+.changelog {
+  padding: 0;
+  list-style: none;
+
+  > li {
+    padding: rem(24) 0;
+
+    &:not(:first-child) {
+      border-top: $border-width solid $border-color;
+    }
+
+  }
+}
+
+
+// browser window style
+.browser {
+  @include shadow;
+  position: relative;
+  background: $black;
+  padding: $card-spacer-x;
+  padding-top: $card-spacer-x * 2.5;
+
+  > span {
+    display: block;
+    position: absolute;
+    top: rem(34);
+    left: $card-spacer-x;
+    width: rem(12);
+    height: rem(12);
+    background: rgba($white, .5);
+    border-radius: 50%;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: rem(24);
+      display: block;
+      width: rem(12);
+      height: rem(12);
+      background: rgba($white, .5);
+      border-radius: 50%;
+    }
+
+    &::after {
+      left: rem(48);
+    }
+  }
+}

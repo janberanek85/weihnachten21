@@ -1,0 +1,72 @@
+//
+// header
+//
+
+
+// global
+.header {
+	@include selection(none);
+	position: relative;
+	width: 100%;
+	z-index: 16;
+	background: transparent;
+	padding: rem(32) 0;
+
+	nav { width: 100%; }
+}
+
+.header-sticky {
+	@include translateY(0%);
+	@include transition(.4s);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: auto;
+	left: 0;
+	opacity: 1;
+}
+
+.header-banner {
+	> * {
+		margin-top: 0!important;
+	}
+}
+
+
+// header interaction
+.headroom--unpinned {
+	.header-sticky {
+		@include translateY(-100%);
+		opacity: 0;
+	}
+}
+
+.headroom--not-top {
+	.header-sticky {
+		padding: rem(16) 0;
+
+		&.header-dark {
+			background: rgba($black, .9);
+		}
+
+		&.header-light {
+			background: rgba($white, .9);
+		}
+	}
+}
+
+
+
+@include media-breakpoint-down(md) {
+	.navbar-expanded {
+		overflow: hidden;
+
+		.header {
+			overflow-y: scroll!important;
+			max-height: 100vh;
+
+			&.header-dark { background: $black; }
+			&.header-light { background: $white; }
+		}
+	}
+}

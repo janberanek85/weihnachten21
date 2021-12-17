@@ -1,0 +1,193 @@
+//
+// figure
+//
+
+img {
+  width: 100%;
+}
+
+figure {
+  width: 100%;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.figure-caption {
+  margin-top: rem(8);
+  font-size: $font-size-base;
+  color: inherit;
+}
+
+.figure {
+  position: relative;
+  color: $white;
+
+  .figure-caption {
+    @include text-shadow;
+    @include transition;
+    @include translateY(100%);
+    position: absolute;
+    left: $card-spacer-x;
+    bottom: $card-spacer-x;
+    z-index: 8;
+    opacity: 0;
+  }
+
+  &:hover {
+    .figure-caption {
+      @include translateY(0%);
+      opacity: 1;
+    }
+  }
+}
+
+
+// image
+.image {
+    @include transitionfix;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 4;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+
+    &::after {
+      @include transition;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: "";
+      background: $black;
+    }
+
+    &[class*="overlay"]::after {
+      opacity: .4;
+    }
+
+    &[class*="overlay-primary"]::after {
+      background: $primary;
+      opacity: .9;
+    }
+
+    img {
+      width: 100%;
+    }
+}
+
+.image-scroll {
+  height: 120%;
+}
+
+
+// image hover actions
+.hover-opacity {
+
+  &:hover {
+    .image::after {
+      opacity: .2;
+    }
+  }
+}
+
+.hover-gradient {
+  @include transition;
+  background: $black;
+
+  .image {
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, 
+    from(rgba(0,0,0,1)), to(rgba(0,0,0,.4)));
+  }
+
+  &:hover {
+    background: $primary;
+  }
+}
+
+.hover-reveal {
+  background: $black;
+
+  .image {
+    opacity: .5;
+  }
+
+  &:hover {
+    background: $primary;
+  }
+}
+
+.hover-rise {
+  overflow: visible!important;
+
+  img { @include transition; }
+
+  @include media-breakpoint-up(lg) {
+    &:hover {
+
+      img {
+        @include shadow;
+        @include translate(0,-8px);
+        position: relative;
+        z-index: 8;
+      }
+
+    }
+  }
+}
+
+
+
+// canvas
+.canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .map {
+    position: absolute!important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  > img {
+    @include translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+  }
+
+  figure {
+    width: auto;
+    position: absolute;
+    display: inline-block;
+
+    img {
+      width: initial;
+    }
+  }
+
+}

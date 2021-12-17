@@ -1,0 +1,75 @@
+//
+// dropdowns
+//
+
+
+.dropdown-menu {
+	@include shadow;
+	padding: rem(4);
+	border: 0;
+
+	.dropdown-item {
+		position: relative;
+		padding: rem(8) rem(16);
+		font-size: $font-size-sm;
+		border: $border-width solid transparent;
+
+		&:hover,
+		&:active {
+			padding-left: rem(12);
+			padding-right: rem(20);
+			background: $gray-100;
+			color: inherit;
+		}
+
+		&.active {
+			color: $primary;
+			background: rgba($primary, .05);
+		}
+	}
+
+	&[class*="-full"] {
+		min-width: 100%;
+	}
+}
+
+
+
+// navbar dropdown
+//
+
+@include media-breakpoint-up(lg) {
+
+	// on hover
+	.dropdown-hover {
+		&:hover .dropdown-menu {
+			opacity: 1;
+			pointer-events: auto;
+			margin: 0;
+		}
+
+		.dropdown-menu {
+			@include transition;
+			@include translate(-50%,0);
+			left: 50%;
+			display: block;
+			opacity: 0;
+			margin: rem(10) 0 0 0;
+			pointer-events: none;
+
+			&[class*="-md"] {
+				min-width: 25vw;
+			}
+
+			&[class*="-lg"] {
+				min-width: 40vw;
+			}
+		}
+	}
+
+	.dropdown-toggle {
+		&::after {
+			display: none;
+		}
+	}
+}

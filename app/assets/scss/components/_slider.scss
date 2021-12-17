@@ -1,0 +1,62 @@
+//
+// slider
+//
+
+.slider {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  background: $black;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.slider-thumbs {
+  position: absolute;
+  bottom: $section-padding-sm;
+  left: 0;
+  right: 0;
+
+  .container {
+    position: relative;
+  }
+
+  .carousel {
+    border-top: $border-width solid rgba($white, .2);
+  }
+
+  .tns-controls {
+    button {
+      background: transparent;
+    }
+  }
+}
+
+
+.tns-nav-active {
+  .entry {
+    opacity: 1;
+    border-color: $white;
+  }
+}
+
+
+.entry {
+  @include transition;
+  margin-top: -$border-width;
+  padding-top: rem(16);
+  opacity: .5;
+  border-top: $border-width solid transparent;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.entry-title {
+  font-size: $font-size-lg;
+  line-height: 1.6;
+  color: $white;
+}

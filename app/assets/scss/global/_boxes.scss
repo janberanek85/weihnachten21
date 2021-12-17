@@ -1,0 +1,46 @@
+//
+// boxes
+//
+
+
+
+// bordered
+%bordered {
+    @include border-radius;
+    @include transition;
+    background-color: transparent;
+    border: $border-width solid transparent;
+}
+
+[class*="bordered"] { @extend %bordered; }
+
+
+
+// styles
+%boxed {
+    @include border-radius;
+    background-color: $white;
+}
+
+%floating {
+    -webkit-box-shadow: 0px 0 rem(24) 0 rgba($black,0.05);
+       -moz-box-shadow: 0px 0 rem(24) 0 rgba($black,0.05);
+            box-shadow: 0px 0 rem(24) 0 rgba($black,0.05);
+}
+
+[class*="boxed"] { @extend %boxed; }
+[class*="floating"] { @extend %floating; }
+
+
+// merged
+%separated {
+
+    > * {
+        margin-top: -$border-width;
+        margin-left: -$border-width;
+        border: $border-width solid $border-color;
+    }
+
+}
+
+.separated { @extend %separated; }

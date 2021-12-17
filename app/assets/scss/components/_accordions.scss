@@ -1,0 +1,205 @@
+//
+// accordions
+//
+
+.accordion {
+
+
+	&:hover {
+		.card {
+			button {
+				opacity: .5;
+			}
+		}
+	}
+
+	.card {
+		background: transparent;
+		overflow: visible;
+		border-width: $border-width 0;
+		border-radius: 0;
+
+		.card-header {
+			padding: 0;
+			border-bottom: 0;
+			background: transparent;
+		}
+
+
+		.card-body {
+			padding: 0 rem(32) rem(32) 0;
+		}
+
+		button {
+			@include transition;
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding: rem(32) rem(32) rem(32) 0;
+			font-size: $font-size-lg;
+			font-weight: $font-weight-normal;
+			color: inherit;
+
+			&::before {
+				@include transition;
+				position: absolute;
+			    content: "\e92e";
+			    right: 0;
+			    top: 50%;
+			    width: 1em;
+			    line-height: 1em;
+			    text-align: center;
+			    font-family: 'icomoon' !important;
+			    font-size: rem(20);
+			    margin-top: -0.5em;
+			}
+
+			&:hover {
+				text-decoration: none;
+				opacity: 1;
+			}
+
+			&[aria-expanded="true"] {
+				opacity: 1;
+				
+				&::before {
+					@include rotate(180deg);
+				}
+			}
+		}
+	}
+
+}
+
+
+// minimal
+.accordion[class*="minimal"] {
+	.card {
+		border: 0;
+
+		+ .card {
+			margin-top: rem(40);
+		}
+
+		button {
+			padding: 0;
+			padding-left: rem(56);
+			font-size: $h3-font-size;
+
+			&::before {
+				right: auto;
+				left: 0;
+				content: "";
+				width: rem(32);
+				height: $border-width;
+				margin-top: 0;
+				background: $black;
+			}
+
+			&::after {
+				@include rotate(90deg);
+				@include transition;
+				position: absolute;
+			    content: "";
+			    width: rem(32);
+			    height: $border-width;
+			    background: $black;
+			    left: 0;
+			    top: 50%;
+			}
+
+			&:hover {
+				color: inherit;
+			}
+
+			&[aria-expanded="true"] {
+				color: inherit;
+
+				&::before {
+					@include rotate(0deg);
+					color: inherit;
+				}
+
+				&::after {
+					@include rotate(0deg);
+					color: inherit;
+				}
+			}
+		}
+
+		.card-body {
+			margin-top: rem(16);
+			padding-left: rem(56);
+		}
+
+		@include media-breakpoint-down(md) {
+
+			+ .card {
+				margin-top: rem(24);
+			}
+
+			button {
+				font-size: $h5-font-size;
+				padding-left: rem(40);
+
+				&::before {
+					width: rem(20);
+				}
+
+				&::after {
+				    width: rem(20);
+				}
+			}
+
+			.card-body {
+				padding-left: rem(40);
+			}
+		}
+	}
+
+	&[class*="minimal-sm"] {
+		.card {
+
+			+ .card {
+				margin-top: rem(24);
+			}
+
+			button {
+				font-size: $h4-font-size;
+				padding-left: rem(56);
+
+				&::before {
+					width: rem(24);
+				}
+
+				&::after {
+				    width: rem(24);
+				}
+			}
+
+			.card-body {
+				padding-left: rem(56);
+			}
+		}
+	}
+}
+
+
+// inverted
+.text-white {
+	.accordion {
+		.card {
+			border-color: rgba($white, .2);
+		}
+	}
+
+	.accordion[class*="minimal"] {
+
+		button {
+			&::before,
+			&::after {
+				background: $white;
+			}
+		}
+	}
+}

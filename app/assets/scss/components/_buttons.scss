@@ -1,0 +1,106 @@
+//
+// buttons
+//
+
+
+// colors
+@each $color, $value in $colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+
+// text + icon btn
+.btn-with-icon {
+	position: relative;
+	padding-right: $input-btn-padding-x * 2.5;
+	text-align: left;
+
+	[class*="icon"] {
+		@include translate(0,-50%);
+		position: absolute;
+		top: 50%;
+		right: $input-btn-padding-x;
+	}
+
+	&.btn-sm {
+		padding-right: $input-btn-padding-x-sm * 2.5;
+
+		[class*="icon"] {
+			right: $input-btn-padding-x-sm;
+		}
+	}
+
+	&.btn-lg {
+		padding-right: $input-btn-padding-x-lg * 2.5;
+
+		[class*="icon"] {
+			right: $input-btn-padding-x-lg;
+		}
+	}
+}
+
+// icon btn
+.btn-icon {
+  position: relative;
+  box-sizing: content-box;
+  width: 1.5em;
+  height: 1.5em;
+  padding: $btn-padding-y;
+
+  &[class*="-sm"] {
+    padding: $btn-padding-y-sm;
+  }
+
+  &[class*="-lg"] {
+    padding: $btn-padding-y-lg;
+  }
+
+  &[class*="-xl"] {
+    padding: $btn-padding-y-lg * 1.5;
+    font-size: rem(24)
+  }
+
+  &[class*="-rounded"] {
+    border-radius: 50%!important;
+  }
+
+  i {
+    @include translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+// mods
+.btn-rounded {
+	border-radius: rem(100);
+}
+
+.btn-coupon {
+  border: $border-width dashed rgba($white, .5);
+  color: $white;
+  font-weight: $font-weight-bold;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $white;
+    cursor: default!important;
+  }
+}
+
+.btn-black {
+  &:hover {
+    background: lighten($black, 10%);
+    border-color: transparent;
+  }
+}

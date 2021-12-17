@@ -1,0 +1,40 @@
+//
+// modal
+//
+
+.modal-header,
+.modal-body,
+.modal-footer {
+	position: relative;
+	border: 0;
+	z-index: 4;
+}
+
+.modal-content {
+	@extend %floating;
+	padding: rem(64) rem(56);
+	border: 0;
+
+	.image {
+		z-index: 2;
+	}
+
+	.close {
+		@include transition;
+		position: absolute;
+		top: rem(16);
+		right: rem(16);
+		color: $white;
+		z-index: 8;
+		text-shadow: none;
+		width: rem(48);
+		height: rem(48);
+		border-radius: 50%;
+		opacity: 1;
+
+		&:hover {
+			color: $white;
+			background: rgba($black, .1);
+		}
+	}
+}

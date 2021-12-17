@@ -1,0 +1,251 @@
+//
+// typography
+//
+
+
+// spacing
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {  
+  &:last-child { margin-bottom: 0; }
+}
+
+p, blockquote, .alert, ul, ol {
+  &:last-child { margin-bottom: 0; }
+}
+
+a {
+  @include transition;
+}
+
+p {
+  line-height: 1.6;
+}
+
+
+// headings
+h1 {
+  line-height: 1.2em;
+}
+
+.lh-1 {
+  line-height: 1em;
+}
+
+.lh-lg { line-height: 1.8; }
+
+.coupon {
+  margin: 0 .4em;
+  padding: .4em;
+  border: $border-width dashed rgba($white, .4);
+  letter-spacing: .1em;
+}
+
+
+.list {
+  list-style: none;
+  padding-left: rem(24);
+
+  li {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 1em;
+      left: rem(-24);
+      width: rem(8);
+      height: rem(8);
+      border-radius: 50%;
+      display: block;
+      background: $border-color;
+      margin-top: -0.5em;
+    }
+
+    &:not(:first-child) {
+      margin-top: rem(16);
+    } 
+  }
+}
+
+
+//divider 
+.divider {
+  @include translate(-50%,-50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  // width: rem(72);
+  // height: rem(72);
+
+  &::after {
+    @include rotate(-45deg);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: rem(2);
+    background: $border-color;
+  }
+}
+
+
+// text shadow
+.text-shadow {
+  @include text-shadow;
+}
+
+
+// eyebrow
+%eyebrow {
+  display: inline-block;
+  font-size: rem(12);
+  font-family: $headings-font-family;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.eyebrow {
+  @extend %eyebrow;
+}
+
+
+// link with icon
+.link {
+  position: relative;
+  display: inline-block;
+  padding-right: rem(32);
+
+  [class*="icon"] {
+    @include transition;
+    @include translate(0,-50%);
+    position: absolute;
+    top: 50%;
+    right: rem(4);
+    font-size: $font-size-lg;
+  }
+}
+
+
+// underline
+%underline {
+  display: inline-block;
+  position: relative;
+
+  &::before {
+    @include transition(.4s, width, 0s);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    border-bottom: $border-width solid currentColor;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+.underline { @extend %underline; }
+
+
+// action link style
+%action {
+  @include transition;
+  display: inline-block;
+  position: relative;
+  padding-right: 2em;
+  cursor: pointer;
+
+
+  [class*="icon-"] {
+    @include transition;
+    @include translateY(-50%);
+    position: absolute;
+    right: .5em;
+    top: 50%;
+    display: block;
+    font-size: 1em;
+    width: 1em;
+    line-height: 1em;
+  }
+
+  &:hover {
+    [class*="icon-"]{
+      right: 0;
+    }
+  }
+}
+
+.action {
+  @extend %action;
+}
+
+
+// shine
+.shine {
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba($white, 0), $white, rgba($white, 0));
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 2s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+
+
+// inverted
+.text-white {
+
+  .text-secondary {
+    color: rgba($white, .8)!important;
+  }
+
+  a:not(.btn) {
+  	color: inherit;
+  }
+
+  hr {
+    background: rgba($white, .2);
+  }
+
+  .text-muted {
+  	color: rgba($white, .5)!important;
+  }
+
+  .divider {
+    &::after {
+      background: rgba($white, .5);
+    }
+  }
+}
+
+
+// responsive
+@include media-breakpoint-down(md) {
+  .display-1 { font-size: ($display1-size * .75) }
+  .display-2 { font-size: ($display2-size * .75) }
+  .display-3 { font-size: ($display3-size * .75) }
+  .display-4 { font-size: ($display4-size * .75) }
+  h1, .h1 { font-size: ($h1-font-size * .75) }
+  h2, .h2 { font-size: ($h2-font-size * .75) }
+  h3, .h3 { font-size: ($h3-font-size * .75) }
+  h4, .h4 { font-size: ($h4-font-size * .75) }
+  h5, .h5 { font-size: ($h5-font-size * .75) }
+}

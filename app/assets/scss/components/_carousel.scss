@@ -1,0 +1,323 @@
+//
+// carousel
+//
+
+.carousel-container {
+	position: relative;
+
+	&[class*="-visible"] {
+		.tns-ovh {
+			overflow: visible;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+
+		.tns-controls {
+			button {
+				&[data-controls="prev"] { left: 0; opacity: 0; }
+				&[data-controls="next"] { right: 0; opacity: 0; }
+			}
+		}
+
+		&:hover {
+			.tns-controls {
+				button {
+					&[data-controls="prev"] {
+						left: rem(16);
+						opacity: 1!important;
+					}
+
+					&[data-controls="next"] {
+						right: rem(16);
+						opacity: 1!important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.carousel {
+	position: relative;
+
+	&[class*="-align"] {
+		display: flex;
+		align-items: center;
+	}
+
+}
+
+.tns-outer {
+	position: relative;
+}
+
+.tns-item {
+	@include selection(none);
+	@include nofocus;
+	position: relative;
+}
+
+
+// nav
+.tns-nav {
+	@include nofocus;
+	display: flex;
+	justify-content: center;
+	margin-top: rem(24);
+	padding: 0;
+	list-style: none;
+
+	button {
+		@include nofocus;
+		position: relative;
+		cursor: pointer;
+		padding: 0;
+		width: rem(24);
+		height: rem(24);
+		border: 0;
+		border-radius: 50%;
+		background: transparent;
+
+		&::before {
+			@include transition;
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: block;
+			width: rem(8);
+			height: rem(8);
+			margin-top: rem(-4);
+			margin-left: rem(-4);
+			background: rgba($black, .2);
+			border-radius: 50%;
+		}
+
+		&.tns-nav-active::before,
+		&.tns-nav-active:hover::before {
+			background: $black;
+		}
+
+		&:hover::before {
+			background: rgba($black, .4);
+		}
+	}
+}
+
+
+// controls
+.tns-controls {
+	@include nofocus;
+	display: flex;
+	justify-content: space-between;
+
+	button {
+		@include translateY(-50%);
+		@include transition;
+		border: 0;
+		display: flex;
+		width: rem(48);
+		height: rem(48);
+		padding: 0;
+		text-align: center;
+		font-size: rem(20);
+		color: $black;
+		border-radius: 50%;
+		background: rgba($black, .2);
+
+		position: absolute;
+		top: 50%;
+		z-index: 4;
+		margin-top: rem(-24);
+
+		i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 1em;
+			height: 1em;
+			margin: -.5em 0 0 -.5em;
+			color: $white;
+		}
+
+		&:hover {
+			background: $black;
+		}
+
+		&[disabled] {
+			opacity: .2;
+		}
+
+		&[data-controls="prev"] {
+			left: rem(16);
+		}
+
+		&[data-controls="next"] {
+			right: rem(16);
+		}
+	}
+}
+
+// custom controls
+.carousel-controls {
+	@include nofocus;
+
+	li {
+		@include nofocus;
+		@include transition;
+		position: absolute;
+		top: 50%;
+		display: block;
+		width: rem(80);
+		height: rem(80);
+		margin-top: rem(-40);
+		text-align: center;
+		background: $black;
+		border-radius: 50%;
+		border: 0;
+		z-index: 4;
+		cursor: pointer;
+
+		&[data-controls="prev"] { left: rem(-40); }
+		&[data-controls="next"] { right: rem(-40); }
+
+		&[disabled] {
+			opacity: 0;
+		}
+
+		i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			color: $white;
+			margin-top: -.5em;
+			margin-left: -.5em;
+			width: 1em;
+			line-height: 1em;
+			font-size: rem(24);
+		}
+
+		&:hover {
+			background: $primary;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		li {
+			width: rem(40);
+			height: rem(40);
+			margin-top: rem(-20);
+
+			&[data-controls="prev"] { left: rem(-20); }
+			&[data-controls="next"] { right: rem(-20); }
+
+			i {
+				font-size: rem(20);
+			}
+		}
+	}
+}
+
+
+// custom nav
+.carousel-nav {
+	display: flex;
+	padding: 0;
+
+	li {
+		@include nofocus;
+		display: flex;
+		flex-basis: 0;
+		flex-grow: 1;
+		padding: rem(8) 0;
+		cursor: pointer;
+
+		&[class*="tns-nav-active"] {
+			span,
+			&:hover span {
+				background: $black;
+			}
+		}
+
+		&:hover {
+			span {
+				background: rgba($black, .5);
+			}
+		}
+	}
+
+	span {
+		@include transition;
+		display: flex;
+		width: 100%;
+		height: 2px;
+		background: rgba($black, .2);
+	}
+}
+
+
+
+.text-white {
+	.tns-nav {
+
+		button {
+			&::before {
+				background: rgba($white, .2);
+			}
+
+			&.tns-nav-active::before,
+			&.tns-nav-active:hover::before {
+				background: $white;
+			}
+
+			&:hover::before {
+				background: rgba($white, .4);
+			}
+		}
+	}
+
+	.carousel-nav {
+		display: flex;
+		padding: 0;
+
+		li {
+
+			&[class*="tns-nav-active"] {
+				span,
+				&:hover span {
+					background: $white;
+				}
+			}
+
+			&:hover {
+				span {
+					background: rgba($white, .5);
+				}
+			}
+		}
+
+		span {
+			background: rgba($white, .2);
+		}
+	}
+
+	.carousel-controls {
+
+		li {
+			background: $white;
+
+			i {
+				color: $black;
+			}
+
+			&:hover {
+				background: $primary;
+
+				i {
+					color: $white;
+				}
+			}
+		}
+	}
+}

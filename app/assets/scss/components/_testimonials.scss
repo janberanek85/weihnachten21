@@ -1,0 +1,81 @@
+//
+// testimonials
+//
+
+
+
+// rating
+.rating {
+	display: flex;
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+
+	li {
+		&:not(:first-child) {
+			margin-left: rem(8);
+		}
+	}
+
+	i {
+		color: inherit;
+		font-size: rem(20);
+	}
+}
+
+
+// blockquote
+.blockquote {
+	position: relative;
+
+	p {
+		color: inherit;
+	}
+}
+
+.blockquote-footer {
+	font-size: $font-size-base;
+
+	&::before {
+		display: none;
+	}
+}
+
+
+.blockquote-2 {
+	padding-top: rem(56);
+
+	&::before {
+		position: absolute;
+		top: 0;
+		content: '“';
+		font-size: rem(80);
+		line-height: 1em;
+		color: inherit;
+	}
+
+	p {
+		margin-bottom: rem(24);
+		font-size: rem(32);
+		font-family: $headings-font-family;
+	}
+}
+
+.blockquote-3 {
+	padding: 0 0 0 rem(72);
+
+	&::before {
+		position: absolute;
+		left: 0;
+		content: '“';
+		font-size: rem(80);
+		line-height: 1em;
+		color: inherit;
+	}
+
+	p {
+		margin-bottom: rem(24);
+		font-size: rem(28);
+		font-family: $headings-font-family;
+	}
+}

@@ -1,0 +1,156 @@
+//
+// forms
+//
+
+.form-control,
+.custom-select {
+	display: block;
+	background-color: transparent;
+	color: inherit;
+
+
+	// focus
+	&:focus {
+		color: $black;
+		background-color: transparent;
+	}
+}
+
+
+.form-check-label {
+	font-size: $font-size-sm;
+}
+
+.custom-select {
+	@include prefix(appearance, none, webkit moz);
+}
+
+
+
+// label styles
+.form-group {
+	position: relative;
+	margin-bottom: rem(24);
+	padding-top: rem(4);
+
+	label {
+		font-size: $font-size-sm;
+		margin-bottom: rem(4);
+	}
+}
+
+
+
+
+// custom checkbox
+.custom-checkbox {
+	padding-left: rem(40);
+
+	.custom-control-input {
+		top: 0;
+		width: rem(24);
+		height: rem(24);
+	}
+
+	.custom-control-label {
+
+		&::before {
+			@include translate(0,-50%);
+			top: 50%;
+			left: rem(-40);
+			width: rem(24);
+			height: rem(24);
+			border-radius: 0;
+			border-color: $border-color;
+			background-color: transparent;
+		}
+
+
+		&::after {
+			@include translate(0,-50%);
+			top: 50%;
+			left: rem(-40);
+			width: rem(24);
+			height: rem(24);
+		}
+	}
+}
+
+
+// input groups
+.input-group {
+	@include transition;
+	padding: rem(4);
+	border: $border-width solid $border-color;
+
+
+	&[class*="input-group-rounded"] {
+		border-radius: rem(40);
+	}
+
+
+	// on hover
+	&:hover {
+		border-color: rgba($primary, .5);
+	}
+
+
+	// on focus
+	&[class*="form-control-focus"] {
+		border-color: $primary;
+	}
+
+	.form-control,
+	.custom-select {
+		padding: $input-btn-padding-y ( $input-btn-padding-y * 1.5 );
+		border: none;
+	}
+
+	.input-group-prepend,
+	.input-group-append {
+		position: relative;
+
+		.input-group-text {
+			padding-right: $input-padding-y;
+			padding-left: $input-padding-y;
+			line-height: $input-line-height;
+			border-color: transparent;
+			background: transparent;
+		}
+	}
+}
+
+
+
+
+// inverted
+//
+.text-white {
+
+	.form-control,
+	.custom-select {
+		border-color: rgba($white, .4);
+
+		// focus
+		&:focus {
+			color: $white;
+			border-color: $white;
+		}
+	}
+
+	// input groups
+	.input-group {
+		border-color: rgba($white, .2);
+
+		// on hover
+		&:hover {
+			border-color: rgba($white, .3);
+		}
+
+		// on focus
+		&[class*="form-control-focus"] {
+			border-color: rgba($white, .5);
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+//
+// badge
+//
+
+.badge {
+	font-weight: $font-weight-bold;
+	letter-spacing: .05em;
+  vertical-align: middle;
+}
+
+.badge-rounded {
+	border-radius: rem(40);
+}
+
+@each $color, $value in $colors {
+  .badge-outline-#{$color} {
+    border: $border-width solid #{$value};
+    background: transparent;
+    color: #{$value};
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .badge-outline-#{$color} {
+    border: $border-width solid #{$value};
+    background: transparent;
+    color: #{$value};
+  }
+}

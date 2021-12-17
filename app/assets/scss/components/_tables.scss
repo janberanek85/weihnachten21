@@ -1,0 +1,36 @@
+//
+// tables
+//
+
+.table {
+
+	thead {
+		th {
+			border: 0;
+			font-size: $font-size-lg;
+		}
+	}
+
+	th, td {
+		border-color: $border-color;
+		font-weight: $font-weight-normal;
+	}
+
+
+
+	tbody {
+		th {
+			padding-left: 0;
+		}
+	}
+}
+
+.text-white {
+	.table {
+		color: $white;
+
+		th, td {
+			border-color: rgba($white, .1);
+		}
+	}
+}

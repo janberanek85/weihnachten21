@@ -1,0 +1,220 @@
+//
+// global
+//
+
+body,
+main {
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	> section,
+	> footer,
+	> * > section,
+	> * > footer {
+		position: relative;
+		margin: 0 auto;
+		padding: $section-padding 0;
+
+
+		// for small screens
+		@include media-breakpoint-down(md) {
+			padding: $section-padding-md 0;
+		}
+
+		@include media-breakpoint-down(sm) {
+			padding: $section-padding-sm 0;
+		}
+
+		&[class*="-sm"] {
+			padding-top: $section-padding / 1.5;
+			padding-bottom: $section-padding / 1.5;
+
+			// for small screens
+			@include media-breakpoint-down(md) {
+				padding-top: $section-padding-sm;
+				padding-bottom: $section-padding-sm;
+			}
+		}
+
+		&[class*="-hero"] {
+			padding-top: $section-padding * 1.25;
+
+			// for small screens
+			@include media-breakpoint-down(md) {
+				padding-top: $section-padding-sm * 2;
+			}
+		}
+	}
+}
+
+
+.row {
+	&:not(:last-child) { 
+		margin-bottom: rem(48);
+
+		@include media-breakpoint-down(md) {
+			margin-bottom: rem(32);
+		}
+
+		@include media-breakpoint-down(sm) {
+			margin-bottom: rem(24);
+		}
+	}
+
+	&[class*="vh-"] {
+		padding-top: $section-padding;
+		padding-bottom: $section-padding;
+	}
+}
+
+[class*="container"] {
+	+ [class*="container"]:not(.background) { 
+		margin-top: $section-padding / 1.5; 
+	}
+}
+
+
+
+.cover {
+	padding-top: 0!important;
+	padding-bottom: 0!important;
+
+	> .container {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+
+// fluid container
+.container-fluid {
+	width: auto;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+
+// background & foreground 
+.foreground {
+	position: relative;
+	z-index: 8;
+}
+
+.background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 4;
+	width: auto;
+	overflow: hidden;
+
+	.container-fluid,
+	.row {
+		height: 100%;
+	}
+
+	@include media-breakpoint-down(md) {
+		position: relative;
+		height: 50vh;
+		margin-bottom: -$section-padding-md;
+	}
+
+	@include media-breakpoint-down(sm) {
+		position: relative;
+		height: 50vh;
+		margin-bottom: -$section-padding-sm;
+	}
+}
+
+
+
+.sticky {
+	z-index: 16;
+}
+
+.overlap {
+	position: absolute;
+	top: $grid-gutter-width;
+	right: -($grid-gutter-width / 2);
+}
+
+
+.bg-color {
+	@include transition(.8s);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0;
+}
+
+.bg-color-active {
+
+	.bg-color {
+		opacity: 1;
+	}
+}
+
+
+// collage ( only with .gutter-2 )
+.collage {
+
+	[class*="-2-1"]::before {
+		padding-top: calc(50% - 8px);
+	}
+
+	[class*="-1-2"]::before {
+		padding-top: calc(200% + 16px);
+	}
+}
+
+
+
+// bottom overlay
+.overflow-bottom {
+	margin-bottom: rem(-80);
+} 
+
+
+
+
+.showcase {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+
+	&::before {
+		@include transition;
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: block;
+		z-index: 24;
+		opacity: 1;
+	}
+
+	.row {
+		@include rotate(-20deg);
+		position: absolute;
+		width: 140%;
+		margin-top: -20%;
+		margin-left: -30%;
+		opacity: .25;
+	}
+}
+
+
+.text-white {
+	.border-top,
+	.border-bottom {
+		border-color: rgba($white, .2)!important;
+	}
+}

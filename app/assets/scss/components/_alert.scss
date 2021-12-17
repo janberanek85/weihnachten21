@@ -1,0 +1,23 @@
+//
+// alert
+//
+
+.alert {
+	font-size: $font-size-lg;
+
+	a {
+		color: $white!important;
+	}
+
+	&[class*="alert-light"],
+	&[class*="alert-warning"] {
+		color: $black;
+
+		a { color: $black!important; }
+	}
+
+	@include media-breakpoint-down(md) {
+		padding: rem(32) rem(24);
+		font-size: $font-size-base;
+	}
+}

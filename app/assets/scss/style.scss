@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+
+// Bootstrap & Variables
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "variables";
+@import "cube-variables";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+
+// Components
+@import "global/_index";
+@import "components/_index";

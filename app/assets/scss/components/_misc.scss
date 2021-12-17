@@ -1,0 +1,121 @@
+//
+// misc
+//
+
+// icon
+.icon-box {
+  display: inline-block;
+  position: relative;
+  box-sizing: content-box;
+  padding: .75em;
+
+  &[class*="-rounded"] {
+    border-radius: 50%!important;
+  }
+
+  &[class*="-sm"] {
+    padding: .5em;
+  }
+
+  i {
+    @include translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: .5em;
+
+    &[class*="-sm"] {
+      padding: .25em;
+    }
+  }
+}
+
+
+.overflow-visible {
+  overflow: visible;
+}
+
+
+// pricing
+.bg-pricing {
+  @include media-breakpoint-down(md) {
+    background-color: rgba($white, .1);
+  }
+}
+
+.border-top,
+.border-bottom {
+  &[class*="text-white"] {
+    border-color: rgba($white, .2)!important;
+  }
+}
+
+
+// category
+.categories {
+  .btn-outline-white {
+    border-color: rgba($white, .2);
+
+    &:hover {
+      background: $white;
+      color: $black;
+      border-color: $white;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .btn {
+      padding: rem(16) rem(24);
+      font-size: $font-size-base;
+
+      &.btn-with-icon {
+        padding-right: rem(52);
+
+        [class*="icon-"] {
+          right: rem(20);
+        }
+      }
+    }
+  }
+}
+
+
+
+// scroll down
+.scroll-down {
+  @include rotate(-45deg);
+  position: absolute;
+  bottom: $section-padding-sm;
+  left: 50%;
+  width: rem(16);
+  height: rem(16);
+  margin-left: -12px;
+  border-left: rem(2) solid $white;
+  border-bottom: rem(2) solid $white;
+  -webkit-animation: scrollDown 1.4s infinite;
+  animation: scrollDown 1.4s infinite;
+  z-index: 8;
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) translate(-100%, 100%);
+    opacity: 0;
+  }
+}
+
+
+// parallax accelerate
+.accelerate {
+  backface-visibility: hidden;
+}

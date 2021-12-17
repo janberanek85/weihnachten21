@@ -1,0 +1,19 @@
+//
+// users
+//
+
+.avatar {
+	width: rem(60);
+	height: rem(60);
+	border-radius: 50%;
+
+	&[class*="-sm"] {
+		width: rem(40);
+		height: rem(40);
+	}
+
+	&[class*="-lg"] {
+		width: rem(80);
+		height: rem(80);
+	}
+}

@@ -1,0 +1,174 @@
+//
+// cards
+//
+
+.card {
+	color: inherit;
+	overflow: hidden;
+
+	[class*="card-img"] {
+		@if $enable-rounded {
+		  border-radius: $border-radius;
+		}
+	}
+
+	> a {
+		height: 100%;
+	}
+
+	&[class*="equal"] {
+
+		.card-header,
+		.card-body,
+		.card-footer {
+			@include transitionfix;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: flex;
+			padding: $card-spacer-x;
+			z-index: 8;
+
+			> * {
+				width: 100%;
+			}
+		}
+
+		.card-header { align-items: flex-start!important; }
+		.card-body { align-items: center!important }
+		.card-footer { align-items: flex-end!important; }
+	}
+
+	&[class*="-fill"] {
+		height: 100%;
+	}
+
+	> .list-group {
+		border: 0;
+	}
+}
+
+.card-header,
+.card-body,
+.card-footer {
+	position: relative;
+	z-index: 4;
+	
+	> * {
+		vertical-align: top;
+	}
+}
+
+
+.card-img-top {
+	@include transition;
+
+	&:hover {
+		opacity: .9;
+	}
+}
+
+.card-title {
+	line-height: 1.4;
+
+	> * {
+		line-height: 1.4;
+	}
+}
+
+
+a.card-title {
+	color: inherit;
+	display: block;
+
+	&:hover {
+		color: $primary;
+	}
+
+	> * {
+		display: inline;
+	}
+
+
+	&[class*="-arrow"] {
+		&::after {
+		    content: "\e917";
+		    display: inline-block;
+		    width: 1em;
+		    margin-left: rem(8);
+		    line-height: 1em;
+		    font-size: rem(20);
+		    font-family: 'icomoon' !important;
+		}
+	}
+}
+
+
+// card plugins
+.card {
+	video,
+	.plyr {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: auto;
+	}
+
+	video {
+		@include translateX(-50%);
+	}
+
+	.plyr__controls,
+	.plyr__control {
+		display: none!important;
+	}
+
+	.equal,
+	.canvas {
+		overflow: visible;
+		z-index: 0;
+	}
+}
+
+
+// card hover actions
+.hover-arrow {
+	position: relative;
+
+	> [class*="card-"] {
+		padding-right: 15%!important;
+	}
+
+	&::after {
+		@include transition;
+		@include translateY(50%);
+		content: "\e917";
+		position: absolute;
+		right: $card-spacer-x;
+		bottom: $card-spacer-x;
+		font-family: 'icomoon';
+		font-size: rem(20);
+		display: block;
+		line-height: 1em;
+		text-align: center;
+		border-radius: 50%;
+		z-index: 4;
+		opacity: 0;
+		color: inherit;
+	}
+
+	&:hover::after {
+		@include translateY(0);
+		opacity: 1;
+	}
+}
+
+.hover-border {
+	&:hover {
+		border-color: $primary!important;
+	}
+}
